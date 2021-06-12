@@ -21,7 +21,7 @@ const [state,dispath]=useReducer(AppReducer,initialstate);
 //Action
 const getTransaction=async (id)=>{
     try {
-        const res=await axios.get('/api/v1/transaction');
+        const res=await axios.get('https://expensetrackeru.herokuapp.com//api/v1/transaction');
         dispath({type:'GET_TRANSACTION',payload:res.data.data});
         
     } catch (err) {
@@ -34,7 +34,7 @@ const getTransaction=async (id)=>{
 }
 const deletetransaction=async (id)=>{
     try {
-        await axios.delete(`/api/v1/transaction/${id}`)
+        await axios.delete(`https://expensetrackeru.herokuapp.com//api/v1/transaction/${id}`)
         dispath({type:'DELETE_TRANSACTION',payload:id});
     } catch (err) {
         dispath({type:'TRANSACTION_ERROR',payload:err.response.data.error});
@@ -48,7 +48,7 @@ const addtransaction=async (transaction)=>{
         }
     }
     try {
-        const res=await axios.post('/api/v1/transaction',transaction,config);
+        const res=await axios.post('https://expensetrackeru.herokuapp.com//api/v1/transaction',transaction,config);
         dispath({type:'ADD_TRANSACTION',payload:res.data.data});
         
     } catch (err) {
